@@ -1,5 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
+//App.js will have react-router
 
-import { userChoice, userError } from "../actions";
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import PageTabs from './PageTabs'; 

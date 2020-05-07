@@ -1,4 +1,4 @@
-//index has the redux, next  up reducers
+//index.js has the redux, next  up reducers
 
 import React from 'react';
 import ReactDOM from 'react-dom';
