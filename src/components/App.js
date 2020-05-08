@@ -19,6 +19,28 @@ class App extends React.Component {
             }).catch(error => {
                 this.props.tasksError();
         });
+
+        axios.get('https://my-json-server.typicode.com/bnissen24/project2DB/transactions')
+            .then(response => {
+                this.props.setAccounts(response.data);
+            }).catch(error => {
+            this.props.tasksError();
+        });
+    }
+
+    onViewChange(view){
+        this.setState({ view });
+    }
+
+    wrapPage(jsx) {
+        const { view } = this.state;
+        return (
+            <div className = "container">
+                <PageTabs currentview = {view}
+                          onviewChange = {this.onViewChange.bind(this)}/>
+            </div>
+
+        );
     }
     render(){
         const { view } = this.state;
