@@ -2,59 +2,75 @@
 
 import React from 'react';
 import axios from 'axios';
-//import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-//import PageTabs from './PageTabs';
+import PageTabs from './PageTabs';
 import VariablePage from "./VariablePage";
-import { setAccounts } from "../actions";
+import { setAccounts, tasksError } from "../actions";
+import Page1 from './Page1';
+import Page2 from './Page2';
+import Page3 from './Page3';
 
-class App extends React.Component {
+class App extends React.Component {             //if made into a class component, then able to  use getData & axios calls
+                                                //but unable to use react router
     componentDidMount() {
-        this.getData();
+        this.getData();                         //if made into a functional component, then able to use react router
     }
-    getData(){
+
+
+    getData() {
         axios.get('https://my-json-server.typicode.com/bnissen24/project2DB/accounts')
             .then(response => {
-                this.props.setAccounts(response.data);
+                this.props.setAccounts({allAccounts: response.data, sortedAccounts: this.sortAccounts(response.data)});
             }).catch(error => {
-                this.props.tasksError();
+            this.props.tasksError();
         });
 
         axios.get('https://my-json-server.typicode.com/bnissen24/project2DB/transactions')
             .then(response => {
-                this.props.setAccounts(response.data);
+                this.props.setTransactions({
+                    allTransactions: response.data,
+                    sortedTransactions: this.sortTransactions(response.data)
+                });
             }).catch(error => {
             this.props.tasksError();
         });
     }
 
-    onViewChange(view){
-        this.setState({ view });
+    /****
+     sortAccounts(_id)       //sort by Account name
+     {
+
     }
 
-    wrapPage(jsx) {
-        const { view } = this.state;
+     sortTransactions(_id)   //sort by id & name
+     {
+
+    }
+     ****/
+    render() {
         return (
-            <div className = "container">
-                <PageTabs currentview = {view}
-                          onviewChange = {this.onViewChange.bind(this)}/>
-            </div>
-
-        );
-    }
-    render(){
-        const { view } = this.state;
-        switch (view) {
-            case 'accounts':
-                return (this.wrapPage(<Page1 />));
-            case 'transactions':
-                return (this.wrapPage(<Page2 />));
-            case 'newaccount':
-                return (this.wrapPage(<Page3/>));
-            default:
-                return (this.wrapPage(<h2>Please make a valid selection</h2>));
-        }
+            <di>
+                <BrowserRouter>
+                    <PageTabs/>
+                    <div>
+                        <Route path="/" exact component={Page1}/>
+                        <Route path="/page2" component={Page2}/>
+                        <Route path="/page3" component={Page3}/>
+                        <Route path="/page/:id" component={VariablePage}/>
+                    </div>
+                </BrowserRouter>
+            </di>
+        )
     }
 }
 
-export default App;
+    const mapStateToProps = (state) => {                    //what gets mapped here will be returned to the properties of the component
+        return {
+            errorMessage: state.errors.getTasks
+        };
+    }
+
+
+export default connect(mapStateToProps, {setAccounts, setTransactions})(App);
