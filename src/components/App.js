@@ -14,6 +14,20 @@ import Page3 from './Page3';
 
 class App extends React.Component {             //if made into a class component, then able to  use getData & axios calls
                                                 //but unable to use react router
+    state = {
+        view: {Page1},
+        allAccounts: [],
+        sortedTransactions: {
+            name: [],
+            amounts: []
+        },
+        sortedAccounts: {
+            name: [],
+            balance: []
+        },
+        errorText: ''
+    }
+
     componentDidMount() {
         this.getData();                         //if made into a functional component, then able to use react router
     }
