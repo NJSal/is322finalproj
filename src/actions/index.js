@@ -7,31 +7,33 @@ export const setAccounts = (id, name, balance) => {
     }
 }
 
-export const setTransactions = tasks => {
+export const setTransactions = (transactIndex, accountid, type, amount, description) => {
     return {
         type: 'SET_TRANSACTIONS',
-        payload: userId
+        payload: {
+            transactIndex, accountid, type, amount, description
+        }
     }
 }
 
-export const addAccount = (text) = tasks => {
+export const addAccount = (accountid, name, balance) => {
     return {
         type: 'ADD_ACCOUNT',
-        payload: text
+        payload: accountid, name, balance
     }
 }
 
-export const depositCash = (_id) = tasks => {
+export const depositCash = (accountid, amount) => {
     return {
         type: 'DEPOSIT_CASH',
-        payload: userId
+        payload: accountid, amount
     }
 }
 
-export const withdrawCash = (_id) = tasks => {
+export const withdrawCash = (accountid, amount) => {
     return {
         type: 'WITHDRAW_CASH',
-        payload: userId
+        payload: accountid, amount
     }
 }
 

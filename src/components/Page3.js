@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Page3 = props => {
     return (
         <div className="page-three">
-            <h3>Page 3:  Best for last</h3>
+            <h3>Register Account</h3>
             <ul>
 
                 <li><Link to={'page/1'}>Page 1</Link></li>              {/****to={'/page1'}: look like normal links ***/}
