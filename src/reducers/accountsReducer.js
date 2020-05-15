@@ -32,7 +32,7 @@ const accountsReducer = (state = DEFAULT_STATE , action) =>{
     if(action && action.payload){accountId = state.findIndex(account => account.id === action.payload.accountid);}
 
 
-    else if(action.type === "DEPOSIT_CASH") {
+    if(action.type === "DEPOSIT_CASH") {
         depAmount = action.payload.amount;
         accountId = action.payload.accountid;
         accBalance = action.payload.balance ;
