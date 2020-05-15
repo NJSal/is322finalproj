@@ -57,7 +57,21 @@ export const withdrawCash = (accountid, amount) => {
     }
 }
 
-export const tasksError = errorMessage => {
+export const accountsError = error =>{
+    return{
+        type: 'ACCOUNT_ERROR'
+    }
+}
+
+export const transactsError = error =>{
+    return{
+        type: 'TRANSACTS_ERROR'
+    }
+}
+
+
+
+export const tasksError = (errorMessage) => {
     return {
         type: 'TASKS_ERROR'
     }

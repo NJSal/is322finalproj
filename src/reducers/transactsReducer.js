@@ -46,7 +46,7 @@ const transactsReducer = (state = DEFAULT_STATE , action) =>{
     if(action && action.payload){accountId = state.findIndex(account => account.id === action.payload.accountid);}
 
 
-    if(action.type === "DEPOSIT_CASH") {
+    else if(action.type === "DEPOSIT_CASH") {
         depAmount = action.payload.amount;
         accountId = action.payload.accountid;
         accBalance = action.payload.balance ;
@@ -54,16 +54,6 @@ const transactsReducer = (state = DEFAULT_STATE , action) =>{
         const accountIndex = updateState.findIndex(acc => acc._id === accountId);
         updateState[accountIndex].balance += parseInt(depAmount);
         return updateState;
-        //return ( updateState[accountId].balance = parseInt(accBalance + depAmount) )
-
-        /*****
-         depAmount = action.payload.amount;
-         accountId = action.payload.accountid;
-         accBalance = action.payload.balance;
-         return ( updateState[accountId].balance = parseInt(accBalance + depAmount) )
-
-         *****/
-
     }
 
     else if(action.type === "WITHDRAW_CASH") {
@@ -73,12 +63,7 @@ const transactsReducer = (state = DEFAULT_STATE , action) =>{
 
         const accountIndex = updateState.findIndex( acc => acc._id === accountId);
         updateState[accountIndex].balance -= parseInt(witAmount);
-        /*****
-         witAmount = action.payload.amount;
-         accountId = action.payload.accountid;
-         accBalance = action.payload.balance;
-         return ( updateState[accountId].balance = parseInt(accBalance - witAmount ) )
-         ****/
+        return updateState;
     }
 
     else if(action.type === "ADD_ACCOUNT"){
