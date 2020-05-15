@@ -15,7 +15,7 @@ class factionCard extends React.Component {
         //min 38 in lecture video change
         if(event === withdrawCash){ this.props.withdrawCash(this.state.moneyAmount); }
 
-        this.setState({ moneyAmount: '' });    //clear out of
+        this.setState({ moneyAmount: '' , balance:''});    //clear out of
     }
 
 
@@ -37,13 +37,13 @@ class factionCard extends React.Component {
                         </div>
 
                         <button type = "button"
-                                onClick ={() => this.props.depositCash(this.props.account._id, this.state.moneyAmount, this.props.account.balance)}
+                                onClick ={() => this.props.depositCash(this.props.account._id, this.state.moneyAmount)}
                                 className = "btn btn-success">
                             Deposit
                         </button>
 
                         <button type = "button"
-                                onClick = {() => this.props.withdrawCash(this.props.account._id, this.state.moneyAmount, this.props.account.balance)}
+                                onClick = {() => this.props.withdrawCash(this.props.account._id, this.state.moneyAmount)}
                                 className = "btn btn-danger">
                             Withdraw
                         </button>
