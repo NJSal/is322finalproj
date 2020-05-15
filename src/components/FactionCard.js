@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { depositCash, withdrawCash } from "../actions";
+import { depositCash, withdrawCash} from "../actions";
 
 
 
@@ -24,8 +24,9 @@ class factionCard extends React.Component {
         return (
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> {this.props.account.name} </h5> {/***kingdom name****/}
-                    <p class="card-text"> {this.props.account.balance} </p> {/****kingdom balance*****/}
+                    <h5 class="card-title"> User: {this.props.account.name} </h5> {/***kingdom name****/}
+                    <p class="card-text"> Balance: {this.props.account.balance} </p> {/****kingdom balance*****/}
+                    {/****<p class="card-text"> id: {this.props.account.id} </p>****/}
                     <form onSubmit={this.onFormSubmit}>
                         <div className="form-group">
                             <label> Amount </label>
@@ -35,34 +36,23 @@ class factionCard extends React.Component {
 
                         </div>
 
-
-
                         <button type = "button"
-                                onClick = {() => this.props.depositCash(this.props.account.id, this.props.account.amount, this.props.account.balance)} //parentheses changed from this.amount
+                                onClick ={() => this.props.depositCash(this.props.account._id, this.state.moneyAmount)}
                                 className = "btn btn-success">
                             Deposit
                         </button>
 
                         <button type = "button"
-                                onClick = {() => this.props.withdrawCash(this.props.account.id, this.props.account.amount, this.props.account.balance)}
+                                onClick = {() => this.props.withdrawCash(this.props.account._id, this.state.moneyAmount)}
                                 className = "btn btn-danger">
                             Withdraw
                         </button>
-                        {/****
-                         <button type = "button"
-                         onClick = {() => props.depositCash(props.amount)}
-                         className = "btn btn-success">
-                         Deposit
-                         </button>
 
-                         <button type = "button"
-                         onClick = {() => props.withdrawCash(props.amount)}
-                         className = "btn btn-danger">
-                         Withdraw
-                         </button>
-                         *****/}
-
-                        {/***<input type="submit" className="btn btn-success"/>***/}
+                        <button type = "button"
+                                onClick = {() => this.props.removeAccount(this.props.account)}
+                                className = "btn btn-warning">
+                            Delete
+                        </button>
                     </form>
                 </div>
             </div>

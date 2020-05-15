@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { removeAccount } from "../actions";
+import { removeAccount, withdrawCash, depositCash } from "../actions";
 
 import FactionCard from "./FactionCard";
 
@@ -11,10 +11,12 @@ class accountsList extends React.Component {
         this.props.removeAccount(accountName.id);           //changed _id -> id
     }
 
-
     render(){
         const userAccounts = this.props.accounts.map(accountName => {
-            return <FactionCard account={accountName} key={accountName.id} deleteAccount={this.deleteAccount}/>
+            return <FactionCard
+                account={accountName}
+                key={accountName.id}
+                removeAccount={this.removeAccount}/>
         });
         return(
             <ul className = "task-list list-group">
@@ -29,4 +31,4 @@ const mapStateToProps = (state) => {
         accounts: state.accounts
     }
 }
-export default connect(mapStateToProps, {removeAccount })(accountsList);
+export default connect(mapStateToProps, {depositCash, withdrawCash, removeAccount })(accountsList);

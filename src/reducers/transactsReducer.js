@@ -48,9 +48,13 @@ const transactsReducer = (state = DEFAULT_STATE , action) =>{
 
     if(action.type === "DEPOSIT_CASH") {
         depAmount = action.payload.amount;
-        //accountId = state.findIndex(account => account.id === action.payload);
-        accBalance = updateState[accountId].amount;
-        return ( updateState[accountId].balance = parseInt(accBalance + depAmount) )
+        accountId = action.payload.accountid;
+        accBalance = action.payload.balance ;
+
+        const accountIndex = updateState.findIndex(acc => acc._id === accountId);
+        updateState[accountIndex].balance += parseInt(depAmount);
+        return updateState;
+        //return ( updateState[accountId].balance = parseInt(accBalance + depAmount) )
 
         /*****
          depAmount = action.payload.amount;
@@ -64,10 +68,11 @@ const transactsReducer = (state = DEFAULT_STATE , action) =>{
 
     else if(action.type === "WITHDRAW_CASH") {
         witAmount = action.payload.amount;
-        accountId = state.findIndex(account => account.id === action.payload);
-        //accountId = action.payload.accountid;
+        accountId = action.payload.accountid;
         accBalance = action.payload.balance;
-        return ( updateState[accountId].balance = parseInt(accBalance - witAmount ) )
+
+        const accountIndex = updateState.findIndex( acc => acc._id === accountId);
+        updateState[accountIndex].balance -= parseInt(witAmount);
         /*****
          witAmount = action.payload.amount;
          accountId = action.payload.accountid;
