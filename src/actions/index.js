@@ -1,8 +1,8 @@
-export const setAccounts = (id, name, balance) => {
+export const setAccounts = (accountid, name, balance) => {
     return {
         type: 'SET_ACCOUNTS',
         payload: {
-            id, name, balance
+            accountid, name, balance
         }
     }
 }
@@ -19,21 +19,41 @@ export const setTransactions = (transactIndex, accountid, type, amount, descript
 export const addAccount = (accountid, name, balance) => {
     return {
         type: 'ADD_ACCOUNT',
-        payload: accountid, name, balance
+        payload: {
+            accountid, name, balance
+        }
+    }
+}
+
+export const addStartingBalance = (accountid, amount) => {
+    return{
+        type: 'START_BALANCE',
+        payload: {accountid, amount}
+    }
+}
+
+export const removeAccount = (accountid) => {
+    return {
+        type: 'DELETE_ACCOUNT',
+        payload: accountid
     }
 }
 
 export const depositCash = (accountid, amount) => {
     return {
         type: 'DEPOSIT_CASH',
-        payload: accountid, amount
+        payload: {
+            accountid, amount
+        }
     }
 }
 
 export const withdrawCash = (accountid, amount) => {
     return {
         type: 'WITHDRAW_CASH',
-        payload: accountid, amount
+        payload: {
+            accountid, amount
+        }
     }
 }
 

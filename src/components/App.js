@@ -11,11 +11,15 @@ import { setAccounts, setTransactions, tasksError} from "../actions";
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
+import AccountsList from './AccountsList';
+import AddAccount from './AddAccount';
+import TransactFormatPage from './TransactFormatPage';
+import TransactList from './TransactList';
 
 class App extends React.Component {             //if made into a class component, then able to  use getData & axios calls
                                                 //but unable to use react router
     state = {
-        view: {Page1},
+        view: {AccountsList},
         allAccounts: [],
         sortedTransactions: {
             name: [],
@@ -54,34 +58,41 @@ class App extends React.Component {             //if made into a class component
      {
 
     }
-
-     sortTransactions(_id)   //sort by id & name
+     *****/
+    //something nicely is cooking and sizzling here
+    /****
+     sortTransactions(accountId)   //sort by id & name
      {
+         transaction = accountId.filter( transacid => transacid === <VariablePage/>>)
 
-    }
+     }
      ****/
-    render() {
+
+    render(){
+        const {view} = this.state;
+
         return (
-            <di>
+            <div>
                 <BrowserRouter>
                     <PageTabs/>
                     <div>
-                        <Route path="/" exact component={Page1}/>
-                        <Route path="/page2" component={Page2}/>
-                        <Route path="/page3" component={Page3}/>
+
+                        <Route path="/" exact component={AccountsList}/>
+                        <Route path="/page2" component={TransactList}/>
+                        <Route path="/page3" component={AddAccount}/>
                         <Route path="/page/:id" component={VariablePage}/>
                     </div>
                 </BrowserRouter>
-            </di>
+            </div>
         )
     }
 }
 
-    const mapStateToProps = (state) => {                    //what gets mapped here will be returned to the properties of the component
-        return {
-            errorMessage: state.errors.getTasks
-        };
-    }
+const mapStateToProps = (state) => {                    //what gets mapped here will be returned to the properties of the component
+    return {
+        errorMessage: state.errors.getAccounts//had get Tasks
+    };
+}
 
 
 export default connect(mapStateToProps, {setAccounts, setTransactions})(App);
