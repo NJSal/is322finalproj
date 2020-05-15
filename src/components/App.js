@@ -95,4 +95,4 @@ const mapStateToProps = (state) => {                    //what gets mapped here 
 }
 
 
-export default connect(mapStateToProps, {setAccounts, setTransactions})(App);
+export default connect(mapStateToProps, {setAccounts, setTransactions, tasksError})(App);

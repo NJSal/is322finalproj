@@ -11,6 +11,7 @@ class accountsList extends React.Component {
         this.props.removeAccount(accountName.id);           //changed _id -> id
     }
 
+ 
     render(){
         const userAccounts = this.props.accounts.map(accountName => {
             return <FactionCard

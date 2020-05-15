@@ -45,7 +45,6 @@ const transactsReducer = (state = DEFAULT_STATE , action) =>{
     //if there is an action done by user and information being received
     if(action && action.payload){accountId = state.findIndex(account => account.id === action.payload.accountid);}
 
-
     else if(action.type === "DEPOSIT_CASH") {
         depAmount = action.payload.amount;
         accountId = action.payload.accountid;
